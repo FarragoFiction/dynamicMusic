@@ -80,10 +80,15 @@ class DynamicSong {
   int fadePrecision = 20; //not sure if i need this but fgood to have. todo reevealuate this
   void swapSong(int newIndex) {
     var currTime = context.currentTime;
-    variants[activeSong].gainNode.gain.setValueCurveAtTime(valueCurveArray(false, fadePrecision), currTime, fadeTime);
-    variants[newIndex].gainNode.gain.setValueCurveAtTime(valueCurveArray(true, fadePrecision), currTime, fadeTime);
-
-    activeSong = newIndex;
+    try {
+      variants[activeSong].gainNode.gain.setValueCurveAtTime(
+          valueCurveArray(false, fadePrecision), currTime, fadeTime);
+      variants[newIndex].gainNode.gain.setValueCurveAtTime(
+          valueCurveArray(true, fadePrecision), currTime, fadeTime);
+      activeSong = newIndex;
+    } catch (e) {
+      print("Error: Attempted multiple transitions at once.");
+    }
   }
 }
 
