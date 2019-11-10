@@ -127,10 +127,11 @@ List<double> valueCurveArray(bool up, int numSegments) {
     ret[numSegments - 1] = 0;
   }
 
+  /*
   print("value curve array");
   for(int i = 0; i < numSegments; i++) {
     print(ret[i]);
-  }
+  }*/
 
   return ret;
 }
